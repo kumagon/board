@@ -1,6 +1,23 @@
+// mysqlにrootユーザーでログインします
+// mysql -uroot
+
+// ユーザーを作成する
 create user 'board'@localhost identified by 'boardpw';
 grant all on *.* to 'board'@localhost identified by 'boardpw';
 
+// 作成したらログアウトしてからboardユーザーでログインしましょう
+// ログアウト
+// quit
+
+// ログイン
+// mysql -uboard -pboardpw
+
+
+// データベースを作成する
+CREATE DATABASE board;
+
+
+//テーブルを作成する
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -10,7 +27,7 @@ CREATE TABLE `users` (
   `modified` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uidx_mail` (`mail`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ユーザーテーブル';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='user';
 
 CREATE TABLE `boards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -18,7 +35,7 @@ CREATE TABLE `boards` (
   `created` DATETIME NOT NULL,
   `modified` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='掲示板テーブル';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='board';
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -27,6 +44,6 @@ CREATE TABLE `comments` (
   `comment` varchar(255) NOT NULL,
   `created` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='コメントテーブル';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='comment';
 
 
